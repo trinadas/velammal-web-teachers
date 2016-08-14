@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="body-full-height">
+<html lang="en" class="body-full-height"  ng-app="sampleApp"  ng-cloak>
     <head>        
         <!-- META SECTION -->
         <title>Velammal Login - TAI Teachers Portal</title>
@@ -12,53 +12,75 @@
         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+
+    <!-- Custom styling plus plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.js"></script>
+    <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/4.0.6/sweetalert2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/4.0.6/sweetalert2.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/4.0.6/sweetalert2.css">
+
         <!-- EOF CSS INCLUDE -->                                    
     </head>
-    <body>
-        
-        <div class="login-container">
-        
-            <div class="login-box animated fadeInDown">
-                <div class="login-logo"></div>
-                <div class="login-body">
-                    <div class="login-title"><strong>Welcome Teacher</strong>, Please login</div>
-                    <form action="index.html" class="form-horizontal" method="post">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Username"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" class="form-control" placeholder="Password"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-info btn-block">Log In</button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-                <div class="login-footer">
-                    <div class="pull-left">
-                        &copy; 2014 TAI Teachers Portal
-                    </div>
-                    <div class="pull-right">
-                        <a href="#">About</a> |
-                        <a href="#">Privacy</a> |
-                        <a href="#">Contact Us</a>
-                    </div>
-                </div>
-            </div>
+    <body ng-controller="mainController" class="login-container">
+        <div ng-view>
             
+
         </div>
+
+        <!-- START PRELOADS -->
+        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+        <!-- END PRELOADS -->                  
         
+    <!-- START SCRIPTS -->
+        <!-- START PLUGINS -->
+        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
+        <!-- END PLUGINS -->
+
+        <!-- START THIS PAGE PLUGINS-->        
+        <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>        
+        <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+        
+        <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+        <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>       
+        <script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+        <script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
+        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>                
+        <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>                
+        <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>                 
+        
+        <script type="text/javascript" src="js/plugins/moment.min.js"></script>
+        <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- END THIS PAGE PLUGINS-->        
+
+        <!-- START TEMPLATE -->
+        
+        <script type="text/javascript" src="js/plugins.js"></script>        
+        <script type="text/javascript" src="js/actions.js"></script>
+        
+        <script type="text/javascript" src="js/demo_dashboard.js"></script>
+        <!-- END TEMPLATE -->
+    <!-- END SCRIPTS -->         
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js"></script>
+
     </body>
 </html>
+
 
 
 
