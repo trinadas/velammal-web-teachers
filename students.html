@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>        
-        <!-- META SECTION -->
-        <title>Students - TAI Teachers Portal</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                     
-    </head>
-    <body>
+
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
             
@@ -23,11 +7,11 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="index.html">TAI Teacher 1.0</a>
-                        <a href="#" class="x-navigation-control"></a>
+                        <a ng-href="/index">TAI Teacher 1.0</a>
+                        <a ng-href="/#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
-                        <a href="#" class="profile-mini">
+                        <a ng-href="/#" class="profile-mini">
                             <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                         </a>
                         <div class="profile">
@@ -35,28 +19,30 @@
                                 <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name"><a href="pages-profile.html">Prasad Ankit</a></div>
+                                <div class="profile-data-name"><a ng-href="/pages-profile">Prasad Ankit</a></div>
                                 <div class="profile-data-title">VELAMMAL001T</div>
                             </div>
                         </div>                                                                        
                     </li>
-                    <li><a href="dashboard.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
-                    <li><a href="attendance.html"><span class="fa fa-users"></span> <span class="xn-text">Attendance</span></a></li>
-                    <li class="active"><a href="students.html"><span class="fa fa-users"></span> <span class="xn-text">Students</span></a></li>
-                    <li><a href="sessions.html"><span class="fa fa-users"></span> <span class="xn-text">Sessions</span></a></li>
-                    <li><a href="calendar.html"><span class="fa fa-calendar"></span> <span class="xn-text">Calendar</span></a></li>
-                    <li><a href="tasks.html"><span class="fa fa-edit"></span> <span class="xn-text">Tasks</span></a></li>
-                    <li><a href="profile.html"><span class="fa fa-align-center"></span> <span class="xn-text">Profile</span></a></li>
-                    <li><a href="faq.html"><span class="fa fa-question-circle"></span> <span class="xn-text">FAQ</span></a></li>
-                    <li><a href="velammal.html"><span class="fa fa-columns"></span> <span class="xn-text">About Velammal</span></a></li>
+                    <li ><a ng-href="/dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
+                    <li><a ng-href="/attendance"><span class="fa fa-users"></span> <span class="xn-text">Attendance</span></a></li>
+                    <li class="active"><a ng-href="/students"><span class="fa fa-users"></span> <span class="xn-text">Students</span></a></li>
+                    <li><a ng-href="/sessions"><span class="fa fa-users"></span> <span class="xn-text">Sessions</span></a></li>
+                    <li><a ng-href="/calendar"><span class="fa fa-calendar"></span> <span class="xn-text">Calendar</span></a></li>
+                    <li><a ng-href="/tasks"><span class="fa fa-edit"></span> <span class="xn-text">Tasks</span></a></li>
+                    <li><a ng-href="/profile"><span class="fa fa-align-center"></span> <span class="xn-text">Profile</span></a></li>
+                    <li><a ng-href="/faq"><span class="fa fa-question-circle"></span> <span class="xn-text">FAQ</span></a></li>
+                    <li><a ng-href="/velammal"><span class="fa fa-columns"></span> <span class="xn-text">About Velammal</span></a></li>
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
+            <!-- END PAGE SIDEBAR -->
             
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                
+                <!-- Button trigger modal -->
+
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
                     <!-- TOGGLE NAVIGATION -->
@@ -67,7 +53,7 @@
                     <!-- SEARCH -->
                     <li class="xn-search">
                         <form role="form">
-                            <input type="text" name="search" placeholder="Search..."/>
+                            <input type="text" name="search" ng-model="searchkey" placeholder="Search..."/>
                         </form>
                     </li>   
                     <!-- END SEARCH -->
@@ -76,96 +62,7 @@
                         <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
                     </li> 
                     <!-- END SIGN OUT -->
-                    <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-online"></div>
-                                    <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                                    <span class="contacts-title">John Doe</span>
-                                    <p>Praesent placerat tellus id augue condimentum</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                    <span class="contacts-title">Dmitry Ivaniuk</span>
-                                    <p>Donec risus sapien, sagittis et magna quis</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                                    <span class="contacts-title">Nadia Ali</span>
-                                    <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-offline"></div>
-                                    <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                                    <span class="contacts-title">Darth Vader</span>
-                                    <p>I want my money back!</p>
-                                </a>
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
-                            </div>                            
-                        </div>                        
-                    </li>
-                    <!-- END MESSAGES -->
-                    <!-- TASKS -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-tasks"></span></a>
-                        <div class="informer informer-warning">3</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-warning">3 active</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group scroll" style="height: 200px;">                                
-                                <a class="list-group-item" href="#">
-                                    <strong>Phasellus augue arcu, elementum</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Aenean ac cursus</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
-                                    </div>
-                                    <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Lorem ipsum dolor</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Cras suscipit ac quam at tincidunt.</strong>
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 21 Sep 2014 /</small><small class="text-success"> Done</small>
-                                </a>                                
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-tasks.html">Show all tasks</a>
-                            </div>                            
-                        </div>                        
-                    </li>
-                    <!-- END TASKS -->
+                    
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->                    
                 
@@ -178,7 +75,7 @@
                 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-users"></span> Students <small>139 total</small></h2>
+                    <h2><span class="fa fa-users"></span> 8000 Registered Students</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
                 
@@ -194,39 +91,42 @@
                                     <form class="form-horizontal">
                                         <div class="form-group">
                                             <div class="btn-group col-md-2">
-                                                <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Choose Class <span class="caret"></span></a>
+                                                <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Class {{class}}<span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>                                                    
-                                                    <li><a href="#">4</a></li>
-                                                    <li><a href="#">5</a></li>
-                                                    <li><a href="#">6</a></li>
-                                                    <li><a href="#">7</a></li>
-                                                    <li><a href="#">8</a></li>
-                                                    <li><a href="#">9</a></li>
-                                                    <li><a href="#">10</a></li>
-                                                    <li><a href="#">11</a></li>
-                                                    <li><a href="#">12</a></li>
+                                                    <li><a href="#" ng-click="student_class(1)">1</a></li>
+                                                    <li><a href="#" ng-click="student_class(2)">2</a></li>
+                                                    <li><a href="#" ng-click="student_class(3)">3</a></li>
+                                                    <li><a href="#" ng-click="student_class(4)">4</a></li>
+                                                    <li><a href="#" ng-click="student_class(5)">5</a></li>
+                                                    <li><a href="#" ng-click="student_class(6)">6</a></li>
+                                                    <li><a href="#" ng-click="student_class(7)">7</a></li>
+                                                    <li><a href="#" ng-click="student_class(8)">8</a></li>
+                                                    <li><a href="#" ng-click="student_class(9)">9</a></li>
+                                                    <li><a href="#" ng-click="student_class(10)">10</a></li>
+                                                    <li><a href="#" ng-click="student_class(11)">11</a></li>
+                                                    <li><a href="#" ng-click="student_class(12)">12</a></li>
                                                 </ul>
                                             </div>
                                             <div class="btn-group col-md-2">
-                                                <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Choose Section <span class="caret"></span></a>
+                                                <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Section {{section}}<span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">A</a></li>
-                                                    <li><a href="#">B</a></li>
-                                                    <li><a href="#">C</a></li>                                                    
-                                                    <li><a href="#">D</a></li>
+                                                    <li><a href="#" ng-click="student_section('A')">A</a></li>
+                                                    <li><a href="#" ng-click="student_section('B')">B</a></li>
+                                                    <li><a href="#" ng-click="student_section('C')">C</a></li>
+                                                    <li><a href="#" ng-click="student_section('D')">D</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-2">
+                                                <button class="btn btn-primary" ng-click="studentDisplay()">GO</button>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <span class="fa fa-search"></span>
                                                     </div>
-                                                    <input type="text" class="form-control" placeholder="Who are you looking for?"/>
+                                                    <input type="text" ng-model="searchkey"  class="form-control" placeholder="Who are you looking for?"/>
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-primary">Search</button>
+                                                        <button class="btn btn-primary" >Search</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,187 +139,134 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user3.jpg" alt="Nadia Ali"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Nadia Ali</div>
-                                        <div class="profile-data-title">VELAMMAL00001S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>              
-                            </div>
-                            <!-- END CONTACT ITEM -->
+                        <div class="col-md-3" ng-repeat="student in students |orderStudents | filter:searchkey">
+                            <a data-toggle="modal" data-target="#myModal"  ng-click="studentProfile($index)">
+                                <div class="panel panel-default">
+                                    <div class="panel-body profile">
+                                        <div class="profile-image">
+                                            <img ng-src="assets/images/users/user{{$index%7 + 1}}.jpg" alt="Nadia Ali"/>
+                                        </div>
+                                        <div class="profile-data">
+                                            <div class="profile-data-name">{{student.name}}</div>
+                                            <div class="profile-data-title">{{student.email}}</div>
+                                        </div>
+                                    </div>                                
+                                    <div class="panel-body profile_details">
+                                        <div class="contact-info">
+                                            <p><small>Class</small> {{student.class}}</p>
+                                            <p><small>Comment</small> {{student.comments}}</p>                                   
+                                        </div>
+                                    </div>              
+                                </div>
+                            </a>
                         </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user.jpg" alt="Dmitry Ivaniuk"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Dmitry Ivaniuk</div>
-                                        <div class="profile-data-title">VELAMMAL00002S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
+                        <div ng-show="!students">
+                            <h4 class="text-center">{{stud_message}}</h4>
                         </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user2.jpg" alt="John Doe"/>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-center" id="myModalLabel">
+                                Roll No. {{student_prof.roll}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row">
+                                  <div class="col-md-1"  style="padding-top:48%">
+                                      <a href="" ng-show="studentindex>0" ng-click = "studentProfile(studentindex - 1)"><span class="fa fa-chevron-left fa-3x"></span></a>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="row">
+                                        <div class="">
+                                            <img ng-src="assets/images/users/user{{studentindex%7 + 1}}.jpg"  width="100%">
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                      </div>
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="40%">Classify</th>
+                                                        <th width="60%">Student</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name </td>
+                                                        <td>{{student_prof.name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Roll No</td>
+                                                        <td>{{student_prof.roll}}</td>
+                                                    </tr>                                                
+                                                    <tr>
+                                                        <td>Class</td>
+                                                        <td>{{student_prof.class}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Parent</td>
+                                                        <td>{{student_prof.parent}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>{{student_prof.email}}</td>
+                                                    </tr>                              
+                                                    <tr>
+                                                        <td>Section</td>
+                                                        <td>{{student_prof.section}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Phone</td>
+                                                        <td>{{student_prof.phone}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blood</td>
+                                                        <td>{{student_prof.blood}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address</td>
+                                                        <td>{{student_prof.address}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Comments</td>
+                                                        <td>{{student_prof.comments}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">John Doe</div>
-                                        <div class="profile-data-title">VELAMMAL00003S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
+                                  </div>
+                                  <div class="col-md-4">
+                                        <div
+                                        donut-chart
+                                        donut-data='[
+                                            {label: "Download Sales", value: 12},
+                                            {label: "In-Store Sales",value: 30},
+                                            {label: "Mail-Order Sales", value: 20}
+                                        ]'
+                                        donut-colors='["#31C0BE","#c7254e","#98a0d3"]'
+                                        donut-formatter='"currency"'>
+                                        </div>
+                                  </div>
+                                  <div class="col-md-1" style="padding-top:48%">
+                                      <a href="" ng-show="studentindex<(max-1)"  ng-click = "studentProfile(studentindex + 1)"><span class="fa fa-chevron-right fa-3x"></span></a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                
+                              </div>
                             </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user4.jpg" alt="Brad Pitt"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Brad Pitt</div>
-                                        <div class="profile-data-title">VELAMMAL00004S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user5.jpg" alt="John Travolta"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">John Travolta</div>
-                                        <div class="profile-data-title">VELAMMAL00005S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user6.jpg" alt="Darth Vader"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Darth Vader</div>
-                                        <div class="profile-data-title">VELAMMAL00006S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user7.jpg" alt="Samuel Leroy Jackson"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Samuel Leroy Jackson</div>
-                                        <div class="profile-data-title">VELAMMAL00007S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/no-image.jpg" alt="Samuel Leroy Jackson"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Alex Sonar</div>
-                                        <div class="profile-data-title">VELAMMAL00008S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body profile_details">                                    
-                                    <div class="contact-info">
-                                        <p><small>Class</small> 9A</p>
-                                        <p><small>Comment</small> Allergic to tomatoes</p>                                   
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>                        
+                          </div>
+                        </div>           
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
-                                <li class="disabled"><a href="#">«</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>                                    
-                                <li><a href="#">»</a></li>
-                            </ul>                            
-                        </div>
-                    </div>
+
 
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                                 
@@ -435,11 +282,11 @@
                     <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
                     <div class="mb-content">
                         <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+                        <p>Press No if you want to continue work. Press Yes to logout current user.</p>
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                            <a class="btn btn-success btn-lg" ng-click="logoutUser()">Yes</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>
@@ -471,9 +318,6 @@
         <script type="text/javascript" src="js/actions.js"></script>        
         <!-- END TEMPLATE -->
 
-    <!-- END SCRIPTS -->         
-    </body>
-</html>
 
 
 
