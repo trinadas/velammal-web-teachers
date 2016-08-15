@@ -1,6 +1,15 @@
-
+<style type="text/css">
+    .datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 12px;
+    color: #dd2c00;
+    margin: 10px 0 0 25px; }
+</style>
         <!-- START PAGE CONTAINER -->
-        <div class="page-container">
+        <div class="page-container" data-ng-init="Att()">
            
             <!-- START PAGE SIDEBAR -->
             <div class="page-sidebar">
@@ -19,13 +28,13 @@
                                 <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name"><a ng-href="/pages-profile">Prasad Ankit</a></div>
-                                <div class="profile-data-title">VELAMMAL001T</div>
+                                <div class="profile-data-name"><a ng-href="/pages-profile">{{teacher.name}}</a></div>
+                                <div class="profile-data-title">{{teacher.email}}</div>
                             </div>
                         </div>                                                                        
                     </li>
-                    <li class="active"><a ng-href="/dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
-                    <li><a ng-href="/attendance"><span class="fa fa-users"></span> <span class="xn-text">Attendance</span></a></li>
+                    <li><a ng-href="/dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
+                    <li class="active"><a ng-href="/attendance"><span class="fa fa-users"></span> <span class="xn-text">Attendance</span></a></li>
                     <li><a ng-href="/students"><span class="fa fa-users"></span> <span class="xn-text">Students</span></a></li>
                     <li><a ng-href="/sessions"><span class="fa fa-users"></span> <span class="xn-text">Sessions</span></a></li>
                     <li><a ng-href="/calendar"><span class="fa fa-calendar"></span> <span class="xn-text">Calendar</span></a></li>
@@ -36,8 +45,6 @@
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
-            <!-- END PAGE SIDEBAR -->
-            <!-- END PAGE SIDEBAR -->
             <!-- END PAGE SIDEBAR -->
             
             <!-- PAGE CONTENT -->
@@ -53,105 +60,34 @@
                     <!-- SEARCH -->
                     <li class="xn-search">
                         <form role="form">
-                            <input type="text" name="search" placeholder="Search..."/>
+                            <input type="text" name="search" ng-model="searchkey" placeholder="Search..."/>
                         </form>
                     </li>   
                     <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
+                        <a href="#"  data-toggle="modal" data-target="#logoutModal"  ><span class="fa fa-sign-out"></span></a>    
+                        
+                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-center" id="myModalLabel">
+                                Sign Out</h4>
+                              </div>
+                              <div class="modal-body">
+                                Are You Sure You Want To Logout?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No, I'll stay here</button>
+                                <button type="button" class="btn btn-default btn-primary"  ng-click="logoutUser()" data-dismiss="modal">Yes, Logout</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>                     
                     </li> 
-                    <!-- END SIGN OUT -->
-                    <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-online"></div>
-                                    <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                                    <span class="contacts-title">John Doe</span>
-                                    <p>Praesent placerat tellus id augue condimentum</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                    <span class="contacts-title">Dmitry Ivaniuk</span>
-                                    <p>Donec risus sapien, sagittis et magna quis</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                                    <span class="contacts-title">Nadia Ali</span>
-                                    <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-offline"></div>
-                                    <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                                    <span class="contacts-title">Darth Vader</span>
-                                    <p>I want my money back!</p>
-                                </a>
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
-                            </div>                            
-                        </div>                        
-                    </li>
-                    <!-- END MESSAGES -->
-                    <!-- TASKS -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-tasks"></span></a>
-                        <div class="informer informer-warning">3</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-warning">3 active</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group scroll" style="height: 200px;">                                
-                                <a class="list-group-item" href="#">
-                                    <strong>Phasellus augue arcu, elementum</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Aenean ac cursus</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
-                                    </div>
-                                    <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Lorem ipsum dolor</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Cras suscipit ac quam at tincidunt.</strong>
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 21 Sep 2014 /</small><small class="text-success"> Done</small>
-                                </a>                                
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-tasks.html">Show all tasks</a>
-                            </div>                            
-                        </div>                        
-                    </li>
-                    <!-- END TASKS -->
+                   
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->                    
                 
@@ -173,37 +109,49 @@
                                     <div class="col-md-2">
                                         <p>&nbsp;</p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <a href="#" class="tile tile-info">
-                                            <p>15 September 2016</p>
-                                            <div class="informer informer-default dir-tr"><span class="fa fa-calendar"></span></div>
-                                        </a>
+                                    <div class="col-md-4" >
+                                       <!--  <a href="#" class="tile tile-info">
+                                            <p>{{GetFormattedDate(date)}}</p>
+                                            <div class="informer informer-default dir-tr">
+                                                <span class="fa fa-calendar">
+                                                    
+                                                </span>
+                                            </div>
+                                        </a> -->
+                                        <datepicker  date-format="MMMM d y" >
+                                            <input ng-model="date" date-max-limit="new Date()" type="text" class="text-center" style="background-color:#1b1e24;color:#fff;padding:2.5px;font-size:12;border-color:#1b1e24">
+                                        </datepicker>
+                                    <!-- <input type="date" ng-model="date" > -->
                                     </div>
                                     <div class="btn-group col-md-2">
-                                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Choose Class <span class="caret"></span></a>
+                                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Class {{class}}<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>                                                    
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">6</a></li>
-                                            <li><a href="#">7</a></li>
-                                            <li><a href="#">8</a></li>
-                                            <li><a href="#">9</a></li>
-                                            <li><a href="#">10</a></li>
-                                            <li><a href="#">11</a></li>
-                                            <li><a href="#">12</a></li>
+                                            <li><a href="#" ng-click="student_class(1)">1</a></li>
+                                            <li><a href="#" ng-click="student_class(2)">2</a></li>
+                                            <li><a href="#" ng-click="student_class(3)">3</a></li>
+                                            <li><a href="#" ng-click="student_class(4)">4</a></li>
+                                            <li><a href="#" ng-click="student_class(5)">5</a></li>
+                                            <li><a href="#" ng-click="student_class(6)">6</a></li>
+                                            <li><a href="#" ng-click="student_class(7)">7</a></li>
+                                            <li><a href="#" ng-click="student_class(8)">8</a></li>
+                                            <li><a href="#" ng-click="student_class(9)">9</a></li>
+                                            <li><a href="#" ng-click="student_class(10)">10</a></li>
+                                            <li><a href="#" ng-click="student_class(11)">11</a></li>
+                                            <li><a href="#" ng-click="student_class(12)">12</a></li>
                                         </ul>
                                     </div>
                                     <div class="btn-group col-md-2">
-                                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Choose Section <span class="caret"></span></a>
+                                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Section {{section}}<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">A</a></li>
-                                            <li><a href="#">B</a></li>
-                                            <li><a href="#">C</a></li>                                                    
-                                            <li><a href="#">D</a></li>
+                                            <li><a href="#" ng-click="student_section('A')">A</a></li>
+                                            <li><a href="#" ng-click="student_section('B')">B</a></li>
+                                            <li><a href="#" ng-click="student_section('C')">C</a></li>
+                                            <li><a href="#" ng-click="student_section('D')">D</a></li>
                                         </ul>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary" ng-show="!students_loading" ng-click="studentDisplay()">GO</button>
+                                        <h4 class="text-center">{{students_loading}}</h4>
                                     </div>
                                     <div class="col-md-2">
                                         <p>&nbsp;</p>
@@ -216,23 +164,25 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            
                             <div class="panel panel-default att_checkboxes">
                                 <div class="panel-body" id="att_checkboxes">
-                                    <div class="col-md-3">
-                                        <p>&nbsp;</p>
+                                    <div class="col-md-2">
+                                        &nbsp;
                                     </div>
                                     <div class="col-md-3">
                                         <div class="col-md-12">                                    
-                                            <label class="check"><input type="checkbox" class="icheckbox"/> Mark this day as holiday</label>
+                                            <label class="check"><input type="checkbox" ng-model="holiday" class="icheckbox" ng-click="MarkHoliday(holiday)"/> Mark this day as holiday</label>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="col-md-12">                                    
-                                            <label class="check"><input type="checkbox" class="icheckbox"/> Mark all students present</label>
+                                            <label class="check"><input type="checkbox"  ng-model="allpresent" ng-click="MarkAll(allpresent)" class="icheckbox"/> Mark all students present</label>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
+                                        <a href="" ng-click="attendanceUpdate(attendanceArray,date)" class="btn btn-primary">Submit Attendance </a>
+                                    </div>
+                                    <div class="col-md-1">
                                         <p>&nbsp;</p>
                                     </div>
                                 </div>
@@ -242,266 +192,43 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div ng-show="!students">
+                            <h4 class="text-center">{{stud_message}}</h4>
+                        </div>
+                        <div class="col-md-3" ng-repeat="student in students |orderStudents | filter:searchkey">
                             <!-- CONTACT ITEM -->
                             <div class="panel panel-default">
                                 <div class="panel-body profile">
                                     <div class="profile-image">
-                                        <img src="assets/images/users/user3.jpg" alt="Nadia Ali"/>
+                                        <img ng-src="assets/images/users/user{{$index%7 + 1}}.jpg" alt="Nadia Ali"/>
                                     </div>
                                     <div class="profile-data">
-                                        <div class="profile-data-name">Nadia Ali</div>
-                                        <div class="profile-data-title">VELAMMAL00001S</div>
+                                        <div class="profile-data-name">{{student.name}}</div>
+                                        <div class="profile-data-title">{{student.roll}}</div>
                                     </div>
                                 </div>                                
                                 <div class="panel-body">                                    
                                     <div class="contact-info">
                                         <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
+                                            <span class="help-block" ng-show="attendance($index)!=0">Absent</span> 
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" />
+                                            <label class="switch" ng-show="attendance($index)">
+                                                <input type="checkbox" ng-model="attendanceArray[$index]==2" ng-click="toggle($index)" class="switch" />
                                                 <span></span>
+                                            </label>
+                                            <label ng-hide="attendance($index)">
+                                                <span>Holiday</span>
                                             </label>
                                         </div>
                                         <div class="col-md-4">
-                                            <span class="help-block">Present</span>
+                                            <span class="help-block" ng-show="attendance($index)!=0">Present</span> 
                                         </div>
                                     </div>
                                 </div>                                
                             </div>
                             <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user.jpg" alt="Dmitry Ivaniuk"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Dmitry Ivaniuk</div>
-                                        <div class="profile-data-title">VELAMMAL00002S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user2.jpg" alt="John Doe"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">John Doe</div>
-                                        <div class="profile-data-title">VELAMMAL00003S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" disabled/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user4.jpg" alt="Brad Pitt"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Brad Pitt</div>
-                                        <div class="profile-data-title">VELAMMAL00004S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user5.jpg" alt="John Travolta"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">John Travolta</div>
-                                        <div class="profile-data-title">VELAMMAL00005S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user6.jpg" alt="Darth Vader"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Darth Vader</div>
-                                        <div class="profile-data-title">VELAMMAL00006S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/user7.jpg" alt="Samuel Leroy Jackson"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Samuel Leroy Jackson</div>
-                                        <div class="profile-data-title">VELAMMAL00007S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>
-                        <div class="col-md-3">
-                            <!-- CONTACT ITEM -->
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="profile-image">
-                                        <img src="assets/images/users/no-image.jpg" alt="Samuel Leroy Jackson"/>
-                                    </div>
-                                    <div class="profile-data">
-                                        <div class="profile-data-name">Alex Sonar</div>
-                                        <div class="profile-data-title">VELAMMAL00008S</div>
-                                    </div>
-                                </div>                                
-                                <div class="panel-body">                                    
-                                    <div class="contact-info">
-                                        <div class="col-md-4">
-                                            <span class="help-block">Absent</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch" value="1" checked/>
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span class="help-block">Present</span>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- END CONTACT ITEM -->
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
-                                <li class="disabled"><a href="#">«</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>                                    
-                                <li><a href="#">»</a></li>
-                            </ul>                            
-                        </div>
+                        </div>             
                     </div>
 
                 </div>
@@ -510,23 +237,3 @@
             <!-- END PAGE CONTENT -->
         </div>
         <!-- END PAGE CONTAINER -->
-
-        <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    

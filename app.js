@@ -1,4 +1,4 @@
-var app = angular.module("sampleApp", ['firebase','ngRoute','ngCookies','angular.filter','angular.morris-chart']);
+var app = angular.module("sampleApp", ['firebase','ngRoute','ngCookies','angular.filter','angular.morris-chart','720kb.datepicker']);
 
 // let's create a re-usable factory that generates the $firebaseAuth instance
 app.factory("Auth", ["$firebaseAuth",
@@ -20,7 +20,7 @@ app.factory("aray", ["$firebaseArray",
 
 app.filter('orderStudents', function(){
  return function(input) {
-      //console.log("fjklvgfjkldfhdfkghdfjkg"+ "                  "+ attribute);
+      ////console.log("fjklvgfjkldfhdfkghdfjkg"+ "                  "+ attribute);
     if (!angular.isObject(input)) return input;
 
     var array = [];
@@ -108,13 +108,43 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
 
   function($rootScope, Auth, $location ,$http,$cookies) {
     
-
     var ref = new Firebase("https://tai-school.firebaseio.com");
     $rootScope.sort = function(keyname){
       $rootScope.sortKey = keyname;   //set the sortKey to the param passed
       $rootScope.reverse = !$rootScope.reverse; //if true make it false and vice versa
     };
 
+    //clock
+    function formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
+    };
+    $rootScope.clock={
+      now : formatAMPM(new Date())
+    };
+    var updateClock = function(){
+      $rootScope.clock.now =  formatAMPM(new Date());
+    };
+    setInterval(function(){
+      $rootScope.$apply(updateClock);
+    },1000);
+    updateClock();
+    
+    //date
+    function GetFormattedDate(todayTime ) {
+        var date_str = String(todayTime);
+        date_str = date_str.split(" ");
+        date_str =  Number(date_str[1])+" "+date_str[0][0]+date_str[0][1]+date_str[0][2] ;
+      return date_str;        
+    }
+    $rootScope.date = new Date();
+    //clock
 
     //loadfunction
     $rootScope.loader=false;
@@ -129,11 +159,12 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
     //loadfunction
     $rootScope.loggedin = false;
 
-
+    $rootScope.login_message = "";
     $rootScope.loginUser = function(details) {
+      $rootScope.login_message = "Logging In...";
       details.email ="skranthi@tai.school";
       details.password = "123456";      
-      console.log(details);
+      //console.log(details);
       if($cookies.getObject('auth')){
           $location.path("/students");
       }
@@ -145,10 +176,12 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
           function authHandler(error, authData) {
             if (error) {
               alert("Login Failed!"+ error);
+              $rootScope.login_message = "";
             } 
             else {
+              $rootScope.login_message = "";
               //alert(authData.uid);
-              console.log("Authenticated successfully with payload:", authData);
+              //console.log("Authenticated successfully with payload:", authData);
               $cookies.putObject('auth',authData);
               //$cookies.auth=authData;
               //alert($cookies.getObject('auth').uid);
@@ -162,24 +195,24 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
               //alert("$rootScope.loggedin"+$rootScope.loggedin);
               //alert($rootScope.user);
 
-                $location.path("/students");
+              $location.path("/students");
              
               $rootScope.$apply();
-              //console.log(authData.uid);
+              ////console.log(authData.uid);
              // alert($location.path());
               var ref = new Firebase("https://tai-school.firebaseio.com/teachers/"+authData.uid);
               
               // Attach an asynchronous callback to read the data at our posts reference
               ref.on("value", function(snapshot) {
-                  //console.log(snapshot.val());
+                  ////console.log(snapshot.val());
                   $rootScope.user = snapshot.val();
                   //$cookies.user=$rootScope.user;
                   $cookies.putObject('user',$rootScope.user);
-                  //console.log($cookies.user);
+                  ////console.log($cookies.user);
                   $rootScope.teacherDetail();
                   //$rootScope.$digest();
                 }, function (errorObject) {
-                //console.log("The read failed: " + errorObject.code);
+                ////console.log("The read failed: " + errorObject.code);
               });
 
             }
@@ -193,12 +226,15 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
           ref.unauth();
           $cookies.remove('auth');
           $cookies.remove('user');
-          $scope.user = null;
+          $cookies.remove('teacher');
+          $rootScope.user = null;
+          //console.log("logout");
           //$window.location("http://127.0.0.1:8080/");
-          $location.path("/login");
+          $location.path("/");
           ref.unauth();
           $cookies.remove('auth');
           $cookies.remove('user');
+          $cookies.remove('teacher');
     };
 
     $rootScope.message ="";
@@ -218,13 +254,13 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
         }
         } else {
           $rootScope.message ="check your email";
-            //console.log("Password reset email sent successfully!");
+            ////console.log("Password reset email sent successfully!");
             alert('Password reset email sent successfully!')
         }
       });
     };
       $rootScope.studentProfile = function(val){
-        console.log($rootScope.students);
+        //console.log($rootScope.students);
         $rootScope.array = [];
         
         for(var objectKey in $rootScope.students) {
@@ -236,13 +272,13 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
       };
 
       $rootScope.teacherDetail = function(){
-        console.log($cookies.getObject('user'));
+        //console.log($cookies.getObject('user'));
         var teacherRef = new Firebase("https://tai-school.firebaseio.com/schools/"+$cookies.getObject('user').schoolId+"/teachers/"+$cookies.getObject('user').teacherId);
         teacherRef.on("value", function(snapshot) {
             $rootScope.teacher = snapshot.val();
             $cookies.putObject('teacher',$rootScope.teacher);
            }, function (errorObject) {
-          //console.log("The read failed: " + errorObject.code);
+          ////console.log("The read failed: " + errorObject.code);
         });
       };
 
@@ -261,23 +297,27 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
       };
 
 
+      $rootScope.students_loading = "";
       $rootScope.studentDisplay = function(){
-        console.log($rootScope.teacher.schoolId);
-        console.log($rootScope.class);
-        console.log($rootScope.section);
+        //console.log($rootScope.teacher.schoolId);
+        //console.log($rootScope.class);
+        //console.log($rootScope.section);
+        $rootScope.students_loading = "Loading...";
         var studRef = new Firebase("https://tai-school.firebaseio.com/schools/"+$rootScope.teacher.schoolId+"/students/"+$rootScope.class+"/"+$rootScope.section); 
         studRef.on("value", function(snapshot) {
-            //console.log(snapshot.val());
-            //console.log("entered in studs");
+            ////console.log(snapshot.val());
+            ////console.log("entered in studs");
             $rootScope.students = snapshot.val();
+               $rootScope.students_loading = "";
+            $rootScope.Att();
             if(!$rootScope.students){
                $rootScope.stud_message = "No Student has been registered in this class !!";
             }
             //$cookies.putObject('user',$rootScope.user);
-            //console.log($rootScope.students);
+            ////console.log($rootScope.students);
             //$rootScope.$digest();
           }, function (errorObject) {
-          //console.log("The read failed: " + errorObject.code);
+          ////console.log("The read failed: " + errorObject.code);
         });
       };
       $rootScope.lessonsDisplay = function(){
@@ -289,35 +329,169 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
         }
         $rootScope.$apply();
       };
+        //attendance
+        $rootScope.Att =function(){
+          $rootScope.array = [];
+          for(var objectKey in $rootScope.students) {
+              $rootScope.array.push($rootScope.students[objectKey]);
+          }
+          $rootScope.max=$rootScope.array.length;
+          //Initialization
+          var i =0;
+          $rootScope.attendanceArray=[];
+          for (i = 0; i < $rootScope.max; i++) {
+            $rootScope.attendanceArray.push(1);
+            //console.log($rootScope.attendanceArray[i]+",");
+          }
+            $rootScope.date = new Date();
+            $rootScope.date_str = $rootScope.date.toDateString();
+            $rootScope.date_str = $rootScope.date_str.split(" ");
+            $rootScope.date_str = $rootScope.date_str[2]+" "+$rootScope.date_str[1];
+        };
+          
+        //ToggleAttendance
+        /*$rootScope.attendanceSelectAll = function(){
+          var i =0;
+          for (var i = 0; i < $rootScope.max; i++) {
+            $rootScope.attendanceArray[i] = 2;
+            //console.log($rootScope.attendanceArray[i]+",");
+          }
 
-    $rootScope.editInfo = function(info) {
-      swal({
-          title: 'Are you sure?',
-          text: "",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes!'
-        }).then(function() {
+        }       */ 
+        $rootScope.allpresent = 0;
+        $rootScope.holiday = 0;
+        $rootScope.MarkHoliday = function(holiday){
+          if(holiday ==1){
+            for (var i = 0; i < $rootScope.max; i++) {
+              $rootScope.attendanceArray[i] = 0;
+              ////console.log($rootScope.attendanceArray[i]+",");
+            }
+            $rootScope.allpresent = 0;
+            //$rootScope.$digest();
+          }
+          $rootScope.MarkAll($rootScope.allpresent);
+        }       
+        $rootScope.MarkAll = function(allpresent){
+          if(allpresent ==1){
+            for (var i = 0; i < $rootScope.max; i++) {
+              $rootScope.attendanceArray[i] = 2;
+              ////console.log($rootScope.attendanceArray[i]+",");
+            }
+            $rootScope.holiday =0;
+            //$rootScope.$digest();
+          }
+        }
+        //ToggleAttendance
+        /*$rootScope.attendanceHoliday = function(){
+          var i =0;
+          for (var i = 0; i < $rootScope.max; i++) {
+            $rootScope.attendanceArray[i] = 0;
+            ////console.log($rootScope.attendanceArray[i]+",");
+            ////console.log("evry thng holiday");
+          }
+          $rootScope.holiday = 1;
+          if($rootScope.holiday){
+            $rootScope.holiday = 0;
+            for (var i = 0; i < $rootScope.max; i++) {
+              $rootScope.attendanceArray[i] = 1;
+              ////console.log($rootScope.attendanceArray[i]+",");
+              ////console.log("evry thng holiday");
+            }
+          }
 
-        //$scope.uploadFile();
-        var ref = new Firebase("https://tai-school.firebaseio.com");
-        console.log($rootScope.user);
-              $rootScope.scId = $rootScope.user.schoolId;
-              var usersRef = ref.child("schools").child($rootScope.scId).child("Info");
-              usersRef.update({
-                 name     : info.Name,
-                 phone : info.Phone,
-              });
+        }       */ 
+        $rootScope.toggle = function(ind){
+            if($rootScope.attendanceArray[ind] ==2 ){
+              $rootScope.attendanceArray[ind] = 1;
+            } 
+            else if ($rootScope.attendanceArray[ind] ==1) {
+              $rootScope.attendanceArray[ind] = 2;
+            } 
+            ////console.log("toggled value");
+            //$rootScope.$digest();
+        }        
+        $rootScope.attendance = function(ind){
+            return $rootScope.attendanceArray[ind];
+        }
 
-              swal(
-                'Successfull!',
-                '',
-                'success'
-              );
-       });
-    };
+        $rootScope.attendanceUpdate = function(Array,dated){
+          var i =0;
+          $rootScope.date = GetFormattedDate(new Date());
+          if(dated > $rootScope.date){
+            alert("Invalid Date");
+          }
+          else{
+            console.log(dated);
+            $rootScope.date_str = GetFormattedDate(dated);
+            /*$rootScope.date_str = $rootScope.date_str.split(" ");
+
+            $rootScope.date_str =  Number($rootScope.date_str[2])+" "+$rootScope.date_str[1];
+            */////console.logdate;
+
+            var datex = $rootScope.date_str;
+            ////console.log("func "+datex);
+            
+            var Ref = new Firebase("https://tai-school.firebaseio.com/schools/"+$rootScope.teacher.schoolId+"/students/"+$rootScope.class+"/"+$rootScope.section); 
+            for(var objectKey in $rootScope.students) {
+                var studRef = Ref.child(objectKey);
+                if($rootScope.students[objectKey][datex]==2){
+                  if(Array[i]==1){
+                    var con = Number($rootScope.students[objectKey]["absent"]) + 1;
+                    var con2 = Number($rootScope.students[objectKey]["attendance"]) - 1;
+                    studRef.update({
+                      absent : con,
+                      attendance : con2
+                    });
+                  }
+                  else if (Array[i]==0) {
+                    var con = Number($rootScope.students[objectKey]["attendance"]) - 1;
+                    studRef.update({
+                      attendance : con
+                    });
+                  }
+                }
+                else if($rootScope.students[objectKey][datex]==1){
+                  if(Array[i]==2){
+                    //alert('Im absent to present');
+                    var con = Number($rootScope.students[objectKey]["absent"]) - 1;
+                    var con2 = Number($rootScope.students[objectKey]["attendance"]) + 1;
+                    studRef.update({
+                      absent : con,
+                      attendance : con2
+                    });
+                  }
+                  else if (Array[i]==0) {
+                    var con = Number($rootScope.students[objectKey]["absent"]) - 1;
+                    studRef.update({
+                      absent : con
+                    });
+                  }
+                }
+                else if($rootScope.students[objectKey][datex]==0){
+                  if(Array[i]==2){
+                    var con2 = Number($rootScope.students[objectKey]["attendance"]) + 1;
+                    studRef.update({
+                      attendance : con2
+                    });
+                  }
+                  else if (Array[i]==1) {
+                    var con = Number($rootScope.students[objectKey]["absent"]) + 1;
+                    studRef.update({
+                      absent : con
+                    });
+                  }
+                }
+                var foo = {}; 
+                foo[datex] = Array[i]; 
+                studRef.update(foo);
+                
+                i = i+1;
+                //$rootScope.$digest();
+            } 
+            //console.log("done");
+          }
+        }
+      //attendance
 
     function resetting(emailExec){
       ref.resetPassword({
@@ -332,7 +506,7 @@ app.controller("mainController", ['$rootScope', 'Auth','$location','$http','$coo
                    alert("Error resetting password:", error);
          }
          } else {/*
-             //console.log("Password reset email sent successfully!");*/
+             ////console.log("Password reset email sent successfully!");*/
              //alert('Created Executive successfully!');
              swal(
                 'Mail Has Been Sent To The Executive!',

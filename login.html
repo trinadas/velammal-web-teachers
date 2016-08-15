@@ -21,7 +21,8 @@
                             <a ng-href="/forgot" class="btn btn-link btn-block">Forgot your password?</a>
                         </div>
                         <div class="col-md-6">
-                            <a href=""  ng-click="loginUser(details)"><button class="btn btn-info btn-block">Log In</button></a>
+                            <a href="" ng-show="!login_message" ng-click="loginUser(details)"><button class="btn btn-info btn-block">Log In</button></a>
+                            <h4 class="text-center">{{login_message}}</h4>
                         </div>
                     </div>
                     </form>

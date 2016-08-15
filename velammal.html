@@ -19,12 +19,12 @@
                                 <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name"><a ng-href="/pages-profile">Prasad Ankit</a></div>
-                                <div class="profile-data-title">VELAMMAL001T</div>
+                                <div class="profile-data-name"><a ng-href="/pages-profile">{{teacher.name}}</a></div>
+                                <div class="profile-data-title">{{teacher.email}}</div>
                             </div>
                         </div>                                                                        
                     </li>
-                    <li class="active"><a ng-href="/dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
+                    <li><a ng-href="/dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
                     <li><a ng-href="/attendance"><span class="fa fa-users"></span> <span class="xn-text">Attendance</span></a></li>
                     <li><a ng-href="/students"><span class="fa fa-users"></span> <span class="xn-text">Students</span></a></li>
                     <li><a ng-href="/sessions"><span class="fa fa-users"></span> <span class="xn-text">Sessions</span></a></li>
@@ -32,7 +32,7 @@
                     <li><a ng-href="/tasks"><span class="fa fa-edit"></span> <span class="xn-text">Tasks</span></a></li>
                     <li><a ng-href="/profile"><span class="fa fa-align-center"></span> <span class="xn-text">Profile</span></a></li>
                     <li><a ng-href="/faq"><span class="fa fa-question-circle"></span> <span class="xn-text">FAQ</span></a></li>
-                    <li><a ng-href="/velammal"><span class="fa fa-columns"></span> <span class="xn-text">About Velammal</span></a></li>
+                    <li class="active"><a ng-href="/velammal"><span class="fa fa-columns"></span> <span class="xn-text">About Velammal</span></a></li>
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
@@ -58,7 +58,26 @@
                     <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
+                        <a href="#"  data-toggle="modal" data-target="#logoutModal"  ><span class="fa fa-sign-out"></span></a>    
+                        
+                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-center" id="myModalLabel">
+                                Sign Out</h4>
+                              </div>
+                              <div class="modal-body">
+                                Are You Sure You Want To Logout?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No, I'll stay here</button>
+                                <button type="button" class="btn btn-default btn-primary"  ng-click="logoutUser()" data-dismiss="modal">Yes, Logout</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>                     
                     </li> 
                     <!-- END SIGN OUT -->
                     <!-- MESSAGES -->
@@ -263,26 +282,7 @@
         </div>
         <!-- END PAGE CONTAINER -->
 
-        <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END MESSAGE BOX-->
-
+        
 
 
 
